@@ -1,0 +1,92 @@
+Create TABLE student (
+    student_id INT Auto_increment,
+name VARCHAR(20),
+major VARCHAR(20) default 'NONE',
+PRIMARY KEY (student_id)
+);
+
+Describe student;
+
+Describe extrastudent;
+
+Alter TABLE student Add gpa DECIMAL(3,2);
+
+Alter Table student drop column gpa;
+
+Drop Table student;
+
+INSERT into student Values(1,'Nisaar','Computer');
+INSERT into student(name,major) Values('Raziya','CA');
+INSERT into student(student_id,name) Values(3,'Hasnain');
+INSERT into student Values(5,'Shahida','12');
+INSERT into student Values(6,'Asgar','Pharmacy');
+Select * from Student;
+
+
+Create TABLE student (
+    student_id INT Auto_increment,
+name VARCHAR(20) NOT NULL,
+major VARCHAR(20) Unique,
+PRIMARY KEY (student_id)
+);
+
+
+INSERT into student Values(1,'Nisaar','Computer');
+INSERT into student(name,major) Values('Raziya','CA');
+INSERT into student(student_id,name) Values(3,'Hasnain');
+INSERT into student Values(5,'Shahida','12');
+INSERT into student(name,major) Values('Asgar','test2');
+
+Select * from Student;
+
+Update Student 
+Set major='Chem'
+where major='test2';
+
+
+Update Student 
+Set major='Charter'
+where major='CA';
+
+Update Student 
+Set major='NA'
+where student_id=9 AND name='asgar';
+
+Update Student 
+Set major='nill',name='nill'
+where student_id>9;
+
+
+Select * from Student;{{new_variable}}
+
+Delete From Student
+where student_id >1 ;
+
+Delete from student;
+
+SELECT * from student
+where name='Asgar';
+
+select * from Student
+where major='computer' AND student_id>0;
+
+
+
+select name,major
+from student
+where major='computer' OR student_id>3;
+
+select name,major
+from student
+where name='raziya' OR major <> '12';
+
+select name,major
+from student
+where name='raziya' OR major > 12;
+
+select * 
+from student
+where name in ('raziya','nisaar','asgar') AND student_id>0;
+
+
+DROP table student;

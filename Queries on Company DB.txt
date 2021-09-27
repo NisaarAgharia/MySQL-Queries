@@ -1,0 +1,154 @@
+select sum(salary)
+from employee
+where emp_id >105;
+
+select count(emp_id)
+from employee
+where birth_day >= 1976-01-01;
+
+
+SELECT emp_id, first_name, last_name
+FROM employee
+WHERE birth_day >= 1970-01-01;
+
+select emp_id,first_name,salary
+from employee
+where birth_day >= 1976-01-01;
+
+select Distinct sex
+from employee;
+
+select * from employee
+order by salary;
+
+select * from employee
+order by first_name;
+
+select * from employee
+order by sex,last_name
+limit 5;
+
+select * from employee
+order by sex,first_name
+limit 5;
+
+select * from employee 
+limit 5;
+
+select first_name as Forname, last_name as Surname
+from employee;
+
+select Distinct branch_id
+from employee;
+
+select first_name,birth_day
+from employee
+order by salary Asc;
+
+
+select * from employee;
+
+select count(emp_id) from employee
+where sex='F' AND birth_day > '1970-01-01';
+
+
+select avg(salary) from employee;
+
+select sum(salary) from employee;
+
+select sum(birth_day) from employee;
+
+select count(sex),sex
+from employee
+group by sex;
+
+
+select emp_id from employee
+UNION
+select client_id from client;
+
+
+select branch_name from branch
+UNION
+select client_name from client;
+
+select AVG(salary) from employee;
+
+select *
+from employee
+where employee.last_name LIKE '_c___';
+
+select branch_id 
+from branch
+where branch_name LIKE 'S%'
+UNION
+select branch_id
+from client
+where branch_id=2;
+
+select branch_name 
+from branch
+where branch_name LIKE 'S%'
+UNION
+select client_name
+from client
+where branch_id=2;
+
+
+
+select SUM(total_sales),emp_id
+from works_with
+Group by emp_id;
+
+
+select emp_id,first_name,last_name,sex,salary
+from employee
+JOIN branch
+ON employee.emp_id=branch.mgr_id;
+
+ 
+
+ select employee.emp_id,first_name,last_name,salary,works_with.total_sales
+ from employee
+ JOIN works_with
+ ON employee.emp_id=works_with.emp_id;
+
+
+ select employee.emp_id,first_name,last_name,salary,sum(works_with.total_sales)
+ from employee
+ Right JOIN works_with
+ ON employee.emp_id=works_with.emp_id;
+
+select employee.emp_id,first_name,last_name,salary,works_with.total_sales as TOTAL,works_with.client_id
+ from employee
+ left JOIN works_with
+ ON employee.emp_id=works_with.emp_id;
+
+select client_name,client.client_id,works_with.total_sales
+from client
+join works_with
+ON client.client_id=works_with.client_id;
+
+select distinct supplier_name,client_name
+from branch_supplier
+left join client
+ON client.branch_id=branch_supplier.branch_id;
+
+
+select first_name,last_name,emp_id
+from employee
+where emp_id IN(select works_with.emp_id 
+from works_with
+where total_sales>30000
+);
+
+
+select Client.client_name, Client.client_id
+from client
+where Client.branch_id=(select Branch.branch_id
+from Branch
+where mgr_id=102);
+
+
+
+
